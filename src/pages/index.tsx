@@ -1,5 +1,6 @@
 import { useState } from "react"
 import recipesData from "@/data/recipes.json"
+import RecipeList from "@/components/RecipeList"
 
 export default function Home() {
   const [orderedRecipes, setOrderedRecipes] = useState(recipesData)
@@ -37,7 +38,7 @@ export default function Home() {
       <main className="max-w-5xl mx-auto p-6">
         <h3>Favorites:</h3>
 
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-4 gap-2 mb-6">
           {orderedRecipes.map((r) => {
             const isFavorite = favorites.some((f) => f.id === r.id)
 
@@ -53,6 +54,12 @@ export default function Home() {
             )
           })}
         </div>
+
+        <RecipeList
+          recipes={orderedRecipes}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
       </main>
     </div>
   )
