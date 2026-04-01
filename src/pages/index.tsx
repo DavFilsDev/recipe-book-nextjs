@@ -1,16 +1,17 @@
 import { useState } from "react"
 import recipesData from "@/data/recipes.json"
 import RecipeList from "@/components/RecipeList"
+import { Recipe } from "@/types/recipe"
 
 export default function Home() {
-  const [orderedRecipes, setOrderedRecipes] = useState(recipesData)
-  const [favorites, setFavorites] = useState<typeof recipesData>([])
+  const [orderedRecipes, setOrderedRecipes] = useState<Recipe[]>(recipesData)
+  const [favorites, setFavorites] = useState<Recipe[]>([])
 
   function handleToggleOrder() {
     setOrderedRecipes((prev) => [...prev].reverse())
   }
 
-  function toggleFavorite(recipe: any) {
+  function toggleFavorite(recipe: Recipe) {
     setFavorites((prev) => {
       const exists = prev.find((r) => r.id === recipe.id)
 
