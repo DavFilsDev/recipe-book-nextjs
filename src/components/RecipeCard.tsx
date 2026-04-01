@@ -1,14 +1,21 @@
 import { useState } from "react"
+import { Recipe } from "@/types/recipe"
+
+type Props = {
+  recipe: Recipe
+  favorites: Recipe[]
+  toggleFavorite: (recipe: Recipe) => void
+}
 
 export default function RecipeCard({
   recipe,
   favorites,
   toggleFavorite,
-}: any) {
+}: Props) {
   const [pinned, setPinned] = useState(false)
   const [showDetail, setShowDetail] = useState(false)
 
-  const isFavorite = favorites.some((r: any) => r.id === recipe.id)
+  const isFavorite = favorites.some((r) => r.id === recipe.id)
 
   return (
     <>
@@ -76,14 +83,14 @@ export default function RecipeCard({
 
             <h4>Ingredients:</h4>
             <ul>
-              {recipe.ingredients.map((ing: string, i: number) => (
+              {recipe.ingredients.map((ing, i) => (
                 <li key={i}>{ing}</li>
               ))}
             </ul>
 
             <h4>Steps:</h4>
             <ol>
-              {recipe.steps.map((step: string, i: number) => (
+              {recipe.steps.map((step, i) => (
                 <li key={i}>{step}</li>
               ))}
             </ol>
